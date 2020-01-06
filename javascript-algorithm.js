@@ -121,5 +121,24 @@ function frankenSplice(arr1, arr2, n) {
 }
 
 frankenSplice([1, 2, 3], [4, 5, 6], 1);
+//================11. Falsy Bouncer =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/falsy-bouncer
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+  let newArr = [];
+  for(let i =0; i< arr.length; i++){
+    //Check a falsy value by this condition
+    if(arr[i]){
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+
+bouncer([7, "ate", "", false, 9]);
 //================11.  =========================//
+//================11.  =========================//
+//================11.  =========================//
+
+
 
