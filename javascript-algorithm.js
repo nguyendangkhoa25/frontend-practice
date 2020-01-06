@@ -111,6 +111,15 @@ function titleCase(str) {
   //Join the array to string
   return arrStr.join(' ');
 }
-//================10.  =========================//
+//================10.  Slice and Splice=========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/slice-and-splice
+function frankenSplice(arr1, arr2, n) {
+  // It's alive. It's alive!
+  let someSlice = arr1.slice(0, arr1.length);
+  arr2.splice(n, 0, ...someSlice);
+  return arr2;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
 //================11.  =========================//
 
