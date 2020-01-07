@@ -136,9 +136,52 @@ function bouncer(arr) {
 }
 
 bouncer([7, "ate", "", false, 9]);
-//================11.  =========================//
-//================11.  =========================//
-//================11.  =========================//
+//================12. Where do I Belong =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/where-do-i-belong
+function getIndexToIns(arr, num) {
+  // Sorted the array by ES6
+  arr.sort((a,b) => a-b);
+  let foundIndex = 0;
+  for(let i =0; i< arr.length; i++){
+    if(arr[i] >= num){
+      foundIndex = i;
+      break;
+    }
+    if(i == arr.length-1){
+      foundIndex = arr.length;
+    }
+  }
+  return foundIndex;
+}
+
+getIndexToIns([2, 5, 10], 15);
+//================13. Mutations =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/mutations
+function mutation(arr) {
+  let strFirst = arr[0].toUpperCase();
+  let arrSecond = arr[1].split('');
+  //loop through the second word then check for each one
+  for(let i = 0; i< arrSecond.length; i++){
+    if(!strFirst.includes(arrSecond[i].toUpperCase())){
+      return false;
+    }
+  }
+  return true;
+}
+
+mutation(["hello", "hey"]);
+//================14. Chunky Monkey =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/chunky-monkey
+function chunkArrayInGroups(arr, size) {
+  let arrResult = [];
+  //loop through the array then get the value from start to the size
+  for(let i =0; i< arr.length; i += size){
+    arrResult.push(arr.slice(i, i + size));
+  }
+  return arrResult;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
 
 
 
