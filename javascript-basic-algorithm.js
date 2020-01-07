@@ -1,3 +1,7 @@
+/**
+ This is all the excersire from free code camp for the basic algorithm
+ https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-algorithm-scripting/
+**/
 //=================1. Reverse a String(Đảo chuỗi)=========================//
 function reverseString(str) {
   //Convert a string to an array
