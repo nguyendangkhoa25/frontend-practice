@@ -80,8 +80,43 @@ whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2,
 
 //=================5. Spinal Tap Case =========================//
 //https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/spinal-tap-case
+function spinalCase(str) {
+  // Replace the Capital letter in the word by space. IsHereRightNow => Is Here Right Now
+  str = str.replace(/([a-z](?=[A-Z]))/g, '$1 ');
+  console.log(str);
+  //Replace the space( ) or underscore(_) by hyphen(-)
+  return str.toLowerCase().replace(/\ |\_/g, '-')
+}
 
-//=================6.  =========================//
-//=================7.  =========================//
+spinalCase('AllThe-small Things IsHereRightNow');
+//=================6. Intermediate Algorithm Scripting: Pig Latin =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/pig-latin
+function translatePigLatin(str) {
+  let vowel = str.match(/u|e|o|a|i/);
+  //In case we could not find any vowel letter in the word
+  if(vowel === null){
+    return str.concat("ay");
+  }else{
+    let vowelIndex = vowel.index;
+    //In case the first word is a vowel letter
+    if(vowelIndex === 0){
+      return str.concat("way");
+    }else{
+      return splitValue(str, vowelIndex); 
+    }
+  }
+  return str;
+}
+
+// Reverse the string by the index and then concat with "ay
+function splitValue(str, index) {
+    return str.substring(index).concat(str.substring(0, index)).concat("ay");
+}
+
+translatePigLatin("paragraphs");
+
+//=================7. Intermediate Algorithm Scripting: Search and Replace =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/search-and-replace
+
 //=================8.  =========================//
 //=================9.  =========================//
