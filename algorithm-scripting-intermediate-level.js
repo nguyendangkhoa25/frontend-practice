@@ -173,6 +173,25 @@ function fearNotLetter(str) {
 fearNotLetter("abce");
 //=================10. Intermediate Algorithm Scripting: Sorted Union =========================//
 //https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/sorted-union
+function uniteUnique(arr) {
+  let firstArr = arguments[0];
+  let args = Array.from(arguments);
+  //Loop through the arguments
+  for(let i = 1; i < arguments.length; i++){
+    let arrSub = arguments[i];
+    let maxVal = Math.max(...firstArr);
+    //Loop through of each Array and add to the array
+    for(let j = 0; j <= arrSub.length; j++){
+      if(maxVal < arrSub[j]){
+        console.log("Found Val: " + arrSub[j]);
+        firstArr.push(arrSub[j]);
+      }
+    }
+  }
+  return firstArr;
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
 
 //=================11.  =========================//
 //=================12.  =========================//
