@@ -117,6 +117,69 @@ translatePigLatin("paragraphs");
 
 //=================7. Intermediate Algorithm Scripting: Search and Replace =========================//
 //https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/search-and-replace
+function myReplace(str, before, after) {
+  //In case the first letter of before is Upper we nee to upper case after also
+  if(before.charAt(0) === before.charAt(0).toUpperCase()){
+    after = after.charAt(0).toUpperCase() + after.slice(1);
+  }
+  //Replace
+  return str.replace(before, after);
+}
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
 
-//=================8.  =========================//
-//=================9.  =========================//
+//=================8. Intermediate Algorithm Scripting: DNA Pairing =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/dna-pairing
+function pairElement(str) {
+  let paired = [];  
+  //Let define a search function and push to the array if the char is match
+  let search = function(char){
+    switch(char) {
+      case "A": 
+        paired.push(["A", "T"]);
+        break;
+      case "T": 
+        paired.push(["T", "A"]);
+        break;
+      case "C":
+        paired.push(["C", "G"]);
+        break;
+      case "G":
+        paired.push(["G", "C"]);
+        break;
+    }
+  }
+  //Loop through each letter of the string
+  for(let i =0; i<= str.length; i++){
+    search(str[i])
+  }
+  return paired;
+}
+
+pairElement("GCGCCGGGG");
+//=================9. Intermediate Algorithm Scripting: Missing letters =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/missing-letters
+function fearNotLetter(str) {
+  //Loop through the string and compare the char code of the char with the next char
+  for(let i = 0; i<= str.length; i++){
+    if(str.charCodeAt(i + 1) - str.charCodeAt(i) >= 2){
+        let missingCode = str.charCodeAt(i) + 1;
+        console.log("Missing char code: " + missingCode)
+        return String.fromCharCode(missingCode);
+    }
+  }
+  return undefined;
+}
+
+fearNotLetter("abce");
+//=================10. Intermediate Algorithm Scripting: Sorted Union =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/sorted-union
+
+//=================11.  =========================//
+//=================12.  =========================//
+//=================13.  =========================//
+//=================14.  =========================//
+//=================15.  =========================//
+//=================16.  =========================//
+//=================17.  =========================//
+//=================18.  =========================//
+//=================19.  =========================//
