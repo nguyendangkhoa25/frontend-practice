@@ -193,12 +193,255 @@ function uniteUnique(arr) {
 
 uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
 
-//=================11.  =========================//
-//=================12.  =========================//
-//=================13.  =========================//
-//=================14.  =========================//
-//=================15.  =========================//
-//=================16.  =========================//
-//=================17.  =========================//
-//=================18.  =========================//
-//=================19.  =========================//
+//=================11. Intermediate Algorithm Scripting: Convert HTML Entities =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/convert-html-entities
+function convertHTML(str) {
+  //Define the list of HTML entities
+  let multiple = {
+    '&' : '&amp;',
+    '<' : '&lt;',
+    '>' : '&gt;',
+    '"' : '&quot;',
+    "'" : '&apos;'
+  };
+
+  //Loop through the multiple obj and replace the string
+  for(let char in multiple){
+    let before = char;
+    let after = multiple[char];
+    var pattern = new RegExp(before, 'g');
+    str = str.replace(pattern, after);
+  }
+  return str;
+}
+
+convertHTML("Dolce & Gabbana");
+//=================12. Intermediate Algorithm Scripting: Sum All Odd Fibonacci Numbers =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/sum-all-odd-fibonacci-numbers
+function sumFibs(num) {
+  let fiboArr = [];
+  let preNum = 0;
+  let curNum = 1;
+  //Loop to find the fibonacci
+  while (curNum <= num) {
+    //Find the odd fibonacci then push into an array
+      if(curNum % 2 !== 0){
+        fiboArr.push(curNum);
+      }
+      curNum = preNum + curNum;
+      preNum = curNum - preNum;
+};
+
+  //Sum the array of odd fibonacci
+  let result = fiboArr.reduce((a, b) => a + b, 0)
+  console.log(fiboArr);
+  return result;
+}
+sumFibs(75024);
+//=================13. Intermediate Algorithm Scripting: Sum All PrimesPassed =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/sum-all-primes
+function sumPrimes(num) {
+  let primeArr = [];
+  //Loop to find the prime number then add to the array
+  for(let i = 2; i <= num; i++){
+    if(isPrime(i)){
+      primeArr.push(i);
+    }
+  }
+
+  //Return the sum of the array
+  return primeArr.reduce((a, b) => a + b, 0);
+}
+
+//The function to check that if the number is prime number of not
+function isPrime(num){
+  if(num === 1 || num === 2){
+    return true;
+  }
+  for(let i = 2; i < num; i++){
+    if(num % i === 0){
+      return false;
+    }
+  }
+  return true;
+}
+sumPrimes(977);
+
+//=================14. Intermediate Algorithm Scripting: Smallest Common Multiple =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/smallest-common-multiple
+function smallestCommons(arr) {
+  //Find the min and max number of the array
+  let minNumber = Math.min.apply(null, arr);
+  let maxNumber = Math.max.apply(null, arr);
+  let lcmNum = minNumber;
+  while(minNumber <= maxNumber){
+    lcmNum = lcmFunc(lcmNum, minNumber);
+    console.log("lcmNum: "+ lcmNum);
+    console.log("minNumber: "+ minNumber);
+    minNumber += 1;
+  }
+  return lcmNum;
+}
+
+//Tim uoc so chung nho nhat cua 2 so
+let gcdFunc = (num1, num2) => {
+  
+  //Loop till both numbers are not equal
+  while(num1 != num2){
+    
+    //check if num1 > num2
+    if(num1 > num2){
+      //Subtract num2 from num1
+      num1 = num1 - num2;
+    }else{
+      //Subtract num1 from num2
+      num2 = num2 - num1;
+    }
+  }
+  
+  return num2;
+}
+
+//Tim boi so chung nho nhat cua 2 so
+let lcmFunc = (n1, n2) => {
+  //Find the gcd first 
+  let gcdNum = gcdFunc(n1, n2);
+
+  //then calculate the lcm
+  return (n1 * n2) / gcdNum;
+}
+smallestCommons([1,13]);
+
+//=================15. Intermediate Algorithm Scripting: Drop it =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/drop-it
+function dropElements(arr, func) {
+  let resultArr = [];
+  let founded = false;
+  for(let i = 0; i< arr.length; i++){
+    console.log("arr[" + i + "]: " + arr[i]);
+    if(func(arr[i]) === true || founded === true){
+      resultArr.push(arr[i]);
+      founded = true;
+    }
+  }
+  console.log(resultArr);
+  return resultArr;
+}
+
+//dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
+dropElements([0, 1, 0, 1], function(n) {return n === 1;});
+//=================16. Intermediate Algorithm Scripting: Steamroller =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/steamroller
+function steamrollArray(arr) {
+  // I'm a steamroller, baby
+  let resultArr = [];
+  function flatten(arr){
+      arr.forEach(function(item){
+        if(!Array.isArray(item)){
+          resultArr.push(item)
+        } else{
+          flatten(item);
+        }
+      });
+  }
+  flatten(arr);
+  console.log(resultArr);
+  return resultArr;
+}
+
+steamrollArray([[["a"]], [["b"]]]);
+//=================17. Intermediate Algorithm Scripting: Binary Agents =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/binary-agents
+function binaryAgent(str) {
+  let arr = str.split(" ");
+  let resultString = "";
+  for(let i = 0; i< arr.length; i++){
+    //Convert binary into charcode and then convert charcode into string
+    resultString += String.fromCharCode(parseInt(arr[i], 2));
+  }
+  console.log(resultString);
+  return resultString;
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+
+//=================18. Intermediate Algorithm Scripting: Everything Be True =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/everything-be-true
+function truthCheck(collection, pre) {
+
+  for(let i = 0; i< collection.length; i++){
+    let obj = collection[i];
+    let val = obj[pre];
+    //Check if the value is falsy then return false
+    if(!val){
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"));
+console.log(truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"));
+
+//=================19. Intermediate Algorithm Scripting: Arguments Optional =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/arguments-optional
+function addTogether(first, second) {
+  if (typeof first !== "number") {
+    return undefined;
+  }
+  const sum = second =>
+    typeof second === "number" ? first + second : undefined;
+  return typeof second === "undefined" ? second => sum(second) : sum(second);
+}
+
+addTogether(2)(3);
+
+//=================20. Intermediate Algorithm Scripting: Make a Person =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/make-a-person
+var Person = function(firstAndLast) {
+  var fullName = firstAndLast;
+  var arr = fullName.split(' ');
+
+  // Complete the method below and implement the others similarly
+  this.getFullName = function() {
+    return fullName;
+  };
+  this.setFullName = function(firstAndLast){
+    fullName = firstAndLast;
+    arr = fullName.split(' ');
+  }
+
+  this.getFirstName = function(){
+    return arr[0];
+  }
+  this.setFirstName = function(firstName){
+    arr[0] = firstName;
+    fullName = arr.join(' ');
+  }
+
+  this.getLastName = function(){
+    return arr[1];
+  }
+  this.setLastName = function(lastName){
+    arr[1] = lastName;
+    fullName = arr.join(' ');
+  }
+};
+//=================21. Intermediate Algorithm Scripting: Map the Debris =========================//
+//https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/map-the-debris
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+  for (var prop in arr) {
+    var orbitalPer = Math.round(2 * Math.PI * Math.sqrt(Math.pow(arr[prop].avgAlt + earthRadius, 3) / GM));
+    //Delete a property and then add an new property
+    delete arr[prop].avgAlt;
+    arr[prop].orbitalPeriod = orbitalPer;
+  }
+  console.log(arr);
+  return arr;
+}
+
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+orbitalPeriod([{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}])
+
